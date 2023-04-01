@@ -17,9 +17,9 @@ public class OrderLineEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
 
-    @OneToMany(targetEntity = ProductEntity.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_order_line_product", referencedColumnName = "id")
-    private List<ProductEntity> products;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_line_product_id", referencedColumnName = "id")
+    private ProductEntity product;
 
     @Column(name = "number_of_products")
     private Integer numberOfProducts;
@@ -29,8 +29,8 @@ public class OrderLineEntity {
     public OrderLineEntity() {
     }
 
-    public OrderLineEntity(List<ProductEntity> products, Integer numberOfProducts, Double price) {
-        this.products = products;
+    public OrderLineEntity(ProductEntity product, Integer numberOfProducts, Double price) {
+        this.product = product;
         this.numberOfProducts = numberOfProducts;
         this.price = price;
     }
