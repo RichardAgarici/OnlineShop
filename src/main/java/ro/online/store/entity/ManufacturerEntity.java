@@ -14,8 +14,8 @@ import lombok.ToString;
 public class ManufacturerEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;

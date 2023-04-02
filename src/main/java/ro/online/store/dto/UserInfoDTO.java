@@ -11,7 +11,7 @@ import ro.online.store.utils.Role;
 @AllArgsConstructor
 public class UserInfoDTO {
 
-    private String id;
+    private Integer id;
     private String email;
     private String city;
     private String address;

@@ -13,8 +13,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class OrderLineEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_line_product_id", referencedColumnName = "id")

@@ -11,7 +11,6 @@ public class CategoryConvertor {
 
     public static CategoryDTO map(CategoryEntity categoryEntity){
         return new CategoryDTO(
-                categoryEntity.getId(),
                 categoryEntity.getName());
     }
 }
