@@ -1,9 +1,5 @@
 package ro.online.store.dto;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import ro.online.store.entity.OrderLineEntity;
@@ -17,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class OrderCreateDTO {
+public class OrderDTO {
 
     @NotNull(message = "User Name must not be null")
     private String userName;
@@ -25,34 +21,34 @@ public class OrderCreateDTO {
     private String deliveryAddress;
     private String userAddress;
     private String dateOfSubmission;
-    private List<OrderLineEntity> orderLineEntityList;
+    private List<OrderLineDTO> orderLineDTOList;
     private Status status;
 
-    private static Double calculateTotalCost(List<OrderLineEntity> orderLineEntityList){
+    private static Double calculateTotalCost(List<OrderLineDTO> orderLineDTOList){
         Double totalPrice = 0.0;
-        if(!orderLineEntityList.isEmpty()){
-            for(int i = 0; i< orderLineEntityList.size(); i++){
+        if(!orderLineDTOList.isEmpty()){
+            for(int i = 0; i< orderLineDTOList.size(); i++){
                 totalPrice = totalPrice +
-                        (orderLineEntityList.get(i).getPrice()* orderLineEntityList.get(i).getNumberOfProducts());
+                        (orderLineDTOList.get(i).getPrice()* orderLineDTOList.get(i).getNumberOfProducts());
             }
             return totalPrice;
         }
         return totalPrice;
     }
 
-    public OrderCreateDTO(
+    public OrderDTO(
             String userName,
             String deliveryAddress,
             String userAddress,
             String dateOfSubmission,
-            List<OrderLineEntity> orderLineEntityList,
+            List<OrderLineDTO> orderLineDTOList,
             Status status) {
         this.userName = userName;
-        this.totalCost = calculateTotalCost(orderLineEntityList);
+        this.totalCost = calculateTotalCost(orderLineDTOList);
         this.deliveryAddress = deliveryAddress;
         this.userAddress = userAddress;
         this.dateOfSubmission = dateOfSubmission;
-        this.orderLineEntityList = orderLineEntityList;
+        this.orderLineDTOList = orderLineDTOList;
         this.status = status;
     }
 }

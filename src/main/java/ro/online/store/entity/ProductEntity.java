@@ -56,4 +56,5 @@ public class ProductEntity {
         this.productType = productType;
         this.manufacturerEntityList = manufacturerEntityList;
     }
+
 }

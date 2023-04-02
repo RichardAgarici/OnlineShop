@@ -16,8 +16,6 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class CategoryEntity {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
