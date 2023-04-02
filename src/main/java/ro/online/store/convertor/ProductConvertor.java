@@ -20,7 +20,7 @@ public class ProductConvertor {
         return new ProductDTO(
                 productEntity.getDescription(),
                 productEntity.getThumbnail(),
-                CategoryConvertor.map(productEntity.getCategoryEntity()),
+                CategoryConvertor.mapDTO(productEntity.getCategoryEntity()),
                 productEntity.getPrice(),
                 productEntity.getProductType(),
                 productEntity.getManufacturerEntityList()
