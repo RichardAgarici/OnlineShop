@@ -1,9 +1,11 @@
 package ro.online.store.convertor;
 
 import ro.online.store.dto.ProductDTO;
+import ro.online.store.dto.ProductInfoDTO;
 import ro.online.store.entity.ProductEntity;
 
 public class ProductConvertor {
+
     public static ProductEntity map(ProductDTO productDTO){
         return new ProductEntity(
                 productDTO.getDescription(),
@@ -28,4 +30,21 @@ public class ProductConvertor {
                         .map(manufacturerEntity -> ManufacturerConvertor.map(manufacturerEntity))
                         .toList());
     }
+
+    public static ProductInfoDTO mapInfoDTO(ProductEntity productEntity){
+        return new ProductInfoDTO(
+                productEntity.getId(),
+                productEntity.getDescription(),
+                productEntity.getThumbnail(),
+                ProductConvertor.mapInfoDTO(productEntity).getCategoryInfoDTO(),
+                productEntity.getPrice(),
+                productEntity.getProductType(),
+                productEntity.getManufacturerEntityList()
+                        .stream()
+                        .map(manufacturerEntity -> ManufacturerConvertor.mapInfoDTO(manufacturerEntity))
+                        .toList());
+    }
+
+
+
 }

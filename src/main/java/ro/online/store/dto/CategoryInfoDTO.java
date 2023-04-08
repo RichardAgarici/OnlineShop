@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 public class CategoryInfoDTO {
 
     private Integer id;
-
     private String name;
 }

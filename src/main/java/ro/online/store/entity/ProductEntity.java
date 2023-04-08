@@ -35,7 +35,7 @@ public class ProductEntity {
     private ProductType productType;
 
 
-    @OneToMany(targetEntity = ManufacturerEntity.class, cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "fk_product_manufacturer", referencedColumnName = "id")
     private List<ManufacturerEntity> manufacturerEntityList;
 

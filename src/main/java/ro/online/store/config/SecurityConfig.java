@@ -52,10 +52,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(auth -> {
+            //category role
             auth.requestMatchers("/api/category/create").hasRole(ROL_ADMIN);
             auth.requestMatchers("/api/category/{id}").hasRole(ROL_USER);
             auth.requestMatchers("/api/category/").hasRole(ROL_USER);
             auth.requestMatchers("/api/category").hasRole(ROL_POWER_USER);
+            //manufacturer role
+            auth.requestMatchers("/api/manufacturer/create").hasRole(ROL_USER);
+            auth.requestMatchers("/api/manufacturer/{id}").hasRole(ROL_USER);
+            auth.requestMatchers("/api/manufacturer/find_all").hasRole(ROL_USER);
+
+            //product role
+            auth.requestMatchers("/api/product/create").hasRole(ROL_USER);
+            auth.requestMatchers("/api/product/{id}").hasRole(ROL_USER);
+            auth.requestMatchers("/api/product/find_all").hasRole(ROL_USER);
+
+
         }).httpBasic();
 
         httpSecurity

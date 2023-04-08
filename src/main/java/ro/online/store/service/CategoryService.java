@@ -27,26 +27,26 @@ public class CategoryService {
     public CategoryInfoDTO saveCategory(CategoryDTO categoryDTO) {
         CategoryEntity categoryEntity = CategoryConvertor.map(categoryDTO);
         CategoryEntity savedCategoryEntity = categoryRepository.save(categoryEntity);
-        return CategoryConvertor.map(savedCategoryEntity);
+        return CategoryConvertor.mapInfoDTO(savedCategoryEntity);
     }
 
     public CategoryInfoDTO getCategoryById(Integer id){
         CategoryEntity searchedCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new CategoryCustomException("Could not find category with id: " + id));
-        return CategoryConvertor.map(searchedCategory);
+        return CategoryConvertor.mapInfoDTO(searchedCategory);
     }
 
     public CategoryInfoDTO findByName(String name){
         CategoryEntity foundCategory = categoryRepository.findByName(name)
                 .orElseThrow(() -> new CategoryCustomException("Could not found category"));
-        return CategoryConvertor.map(foundCategory);
+        return CategoryConvertor.mapInfoDTO(foundCategory);
     }
 
     public List<CategoryInfoDTO> findAllCategories(){
         List<CategoryEntity> categories = new ArrayList<>();
         categoryRepository.findAll().forEach(categoryEntity -> categories.add(categoryEntity));
        List<CategoryInfoDTO> categoryInfoDTOS = categories.stream()
-               .map(categoryEntity -> CategoryConvertor.map(categoryEntity))
+               .map(categoryEntity -> CategoryConvertor.mapInfoDTO(categoryEntity))
                .toList();
        if(categoryInfoDTOS.isEmpty()){
            throw new CategoryCustomException("No categories found in the database");
